@@ -1,0 +1,9 @@
+---
+import Mark from './Mark.astro';
+interface Props { light?: boolean; id?: string }
+const { light = false, id = 'hd' } = Astro.props;
+---
+<span class="flex items-center gap-2.5" dir="ltr">
+  <Mark class="h-7 w-9" bars={light ? '#FFFFFF' : '#001E3E'} id={id} />
+  <span class={`whitespace-nowrap text-[0.95rem] font-semibold leading-none tracking-[0.01em] ${light ? 'text-white' : 'text-navy'}`}>Amplify <span class={light ? 'text-green' : 'text-green-deep'}>Direct</span></span>
+</span>

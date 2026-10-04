@@ -1,0 +1,13 @@
+---
+import { waLink } from '../config';
+interface Props { text: string; label: string; where: string; tone?: 'green' | 'light'; class?: string }
+const { text, label, where, tone = 'green', class: cls = '' } = Astro.props;
+const styles = tone === 'green'
+  ? 'bg-green text-navy hover:bg-[#04A859]'
+  : 'bg-paper text-navy hover:bg-mint';
+---
+<a href={waLink(text)} target="_blank" rel="noopener" data-wa={where} aria-label={label ? undefined : 'WhatsApp'}
+   class={`inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full px-6 font-medium transition-colors ${styles} ${cls}`}>
+  <svg viewBox="0 0 24 24" class="size-5 shrink-0" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.22-.08-.39-.12-.55.13-.17.24-.64.8-.78.97-.15.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.55-1.34-.76-1.83-.2-.48-.4-.42-.55-.42h-.47a.9.9 0 0 0-.66.31c-.22.25-.86.85-.86 2.07s.88 2.4 1.01 2.57c.12.16 1.74 2.66 4.22 3.73.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg>
+  {label && <span>{label}</span>}
+</a>

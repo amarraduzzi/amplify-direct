@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+import { SITE, APPS, waLink } from '../config';
+import Logo from '../components/Logo.astro';
+import WaButton from '../components/WaButton.astro';
+interface Props { title: string; description: string }
+const { title, description } = Astro.props;
+const nav = [['/#economies', 'Économies'], ['/#avis', 'Avis Google'], ['/#etapes', 'Étapes']];
+---
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  {!SITE.live && <meta name="robots" content="noindex, nofollow" />}
+  <meta name="theme-color" content="#001E3E" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body class="min-h-dvh overflow-x-clip">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:start-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-paper focus:px-4 focus:py-2">Aller au contenu</a>
+  <header class="sticky top-0 z-30 border-b border-line bg-chalk/90 backdrop-blur">
+    <div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
+      <a href="/" aria-label="Amplify Direct"><Logo id="hd" /></a>
+      <nav class="hidden gap-7 text-[0.95rem] font-medium md:flex">
+        {nav.map(([h, l]) => <a href={h} class="hover:text-green-deep">{l}</a>)}
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href={APPS.marketing} class="hidden text-sm text-muted hover:text-navy lg:inline">Amplify Growth Studio</a>
+        <a href="/builder/" class="inline-flex min-h-11 items-center rounded-full bg-navy px-5 text-sm font-medium text-white hover:bg-blue">Créer mon site</a>
+      </div>
+    </div>
+  </header>
+  <main id="main"><slot /></main>
+  <footer class="bg-navy text-white">
+    <div class="mx-auto grid max-w-6xl gap-8 px-5 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div>
+        <Logo light id="ft" />
+        <p class="mt-4 max-w-sm text-white/70">Le site de votre restaurant, vos commandes en direct et plus d’avis Google. Fait à Rabat.</p>
+      </div>
+      <div class="space-y-2 text-white/80">
+        <p class="font-semibold text-white">Amplify</p>
+        <a class="block hover:text-green" href={`${APPS.marketing}/amplify-pos/`}>Amplify POS</a>
+        <a class="block hover:text-green" href={`${APPS.marketing}/amplify-profit/`}>Amplify Profit</a>
+        <a class="block hover:text-green" href={APPS.marketing}>Amplify Growth Studio</a>
+      </div>
+      <div class="space-y-3">
+        <p class="font-semibold">Une question ?</p>
+        <WaButton text="Bonjour, je voudrais en savoir plus sur Amplify Direct." label="Écrire sur WhatsApp" where="footer" />
+      </div>
+    </div>
+    <p class="border-t border-white/10 px-5 py-5 text-center text-sm text-white/50">© 2026 Amplify Growth Studio. Pas de cookies publicitaires.</p>
+  </footer>
+</body>
+</html>

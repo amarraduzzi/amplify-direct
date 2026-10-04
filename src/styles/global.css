@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@import "@fontsource-variable/archivo/wdth.css";
+@import "@fontsource-variable/readex-pro/wght.css";
+
+@theme {
+  --font-sans: "Archivo Variable", "Readex Pro Variable", system-ui, sans-serif;
+  --color-chalk: #EEF1EC;
+  --color-paper: #FFFFFF;
+  --color-navy: #001E3E;
+  --color-blue: #002E5F;
+  --color-blue-2: #0A3F7A;
+  --color-green: #05B962;
+  --color-green-deep: #00804A;
+  --color-mint: #DDF7E9;
+  --color-muted: #4A5D74;
+  --color-line: #D3DBD6;
+  --text-sm: 0.875rem;
+  --text-base: 1.125rem;
+  --text-lg: 1.3125rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2.25rem;
+  --text-3xl: 3rem;
+  --text-4xl: 3.75rem;
+  --text-5xl: 4.5rem;
+}
+
+html { overflow-x: clip; background: var(--color-chalk); color: var(--color-navy); -webkit-text-size-adjust: 100%; }
+body { font-family: var(--font-sans); font-size: var(--text-base); line-height: 1.6; font-weight: 400; font-stretch: 100%; }
+p { text-wrap: pretty; }
+:focus-visible { outline: 3px solid var(--color-green); outline-offset: 3px; border-radius: 6px; }
+.measure { max-width: 34em; }
+
+/* The voice of the brand: tall, condensed, loud. Headlines only. */
+h1, h2, .display {
+  font-stretch: 62%; font-weight: 800; text-transform: uppercase;
+  line-height: 0.9; letter-spacing: -0.005em; text-wrap: balance;
+}
+h3 { font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+/* Arabic: Readex Pro (Arabic + Latin). No uppercase or condensed width in Arabic; headings stay bold and tight. */
+:lang(ar) body, body:lang(ar) { font-family: "Readex Pro Variable", "Archivo Variable", system-ui, sans-serif; }
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] .display { font-family: "Readex Pro Variable", system-ui, sans-serif; font-stretch: 100%; font-weight: 700; text-transform: none; letter-spacing: 0; line-height: 1.22; }
+[dir="rtl"] h3 { letter-spacing: 0; }
+.fade-2 { color: color-mix(in srgb, currentColor 38%, transparent); }
+
+/* placeholders that still need real data: visible on purpose */
+.ph { background: #FFF1B8; color: #5A4300; padding: 0 .3em; border-radius: 4px; font-weight: 500; text-transform: none; font-stretch: 100%; letter-spacing: 0; }
+
+
+/* Amplify Direct additions (same tokens as the marketing site) */
+@media (prefers-reduced-motion: no-preference) {
+  .rise { animation: rise .7s cubic-bezier(.2,.8,.2,1) both; animation-delay: var(--d, 0ms); }
+  @keyframes rise { from { transform: translateY(105%); } }
+  .land { animation: land .8s cubic-bezier(.2,.9,.25,1) both; animation-delay: var(--d, 0ms); }
+  @keyframes land { from { opacity: 0; transform: translateY(-48px); } }
+}
+.rise-wrap { display: block; overflow: clip; padding-block: .06em; }
+.phone { aspect-ratio: 9 / 18.5; border-radius: 2.4rem; background: #fff; box-shadow: 0 40px 80px -40px rgb(0 30 62 / .55), 0 0 0 8px #001E3E; overflow: hidden; }
+.pv-hero { background: var(--ac); color: var(--ac-ink); }
+.chip-on { background: var(--color-navy); color: #fff; }
+.range { -webkit-appearance: none; appearance: none; height: 8px; border-radius: 999px; background: #DDE3E0; outline: none; cursor: pointer; width: 100%; }
+.range::-webkit-slider-thumb { -webkit-appearance: none; width: 26px; height: 26px; border-radius: 50%; background: #001E3E; border: 4px solid #fff; box-shadow: 0 2px 8px rgb(0 30 62 / .35); }
+.range::-moz-range-thumb { width: 26px; height: 26px; border-radius: 50%; background: #001E3E; border: 4px solid #fff; }

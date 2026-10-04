@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import WaButton from '../components/WaButton.astro';
+const steps = [
+  ['Vos infos', 'Nom, logo, adresse, horaires et numéro WhatsApp. Une seule fois.'],
+  ['Votre carte', 'Photographiez votre menu. L’IA lit les plats et les prix, vous corrigez.'],
+  ['Votre style', 'Choisissez un thème et une couleur. Le résultat est toujours soigné.'],
+  ['En ligne', 'Votre site, votre QR code et votre lien de commande sont prêts.'],
+];
+const reviews = [
+  ['Un QR code sur la table et le ticket', 'Un scan ouvre directement le formulaire d’avis Google. Une seule touche.'],
+  ['Un message après la commande', '« Comment c’était ? » avec le lien Google, envoyé à chaque client qui commande.'],
+  ['Vos avis bien visibles', 'La note et vos meilleurs avis s’affichent sur votre site, avec un lien vers Google.'],
+];
+---
+<Base title="Amplify Direct, le site de votre restaurant sans commission" description="Créez seul le site de votre restaurant. Vos clients commandent directement, sans plateforme de livraison, et vous recevez plus d’avis Google.">
+  <section class="mx-auto grid max-w-6xl items-center gap-12 px-5 pb-20 pt-14 md:grid-cols-[1.15fr_.85fr] md:pt-20">
+    <div>
+      <h1 class="text-[clamp(3.4rem,10vw,6.4rem)]">
+        <span class="rise-wrap"><span class="rise block">Votre site.</span></span>
+        <span class="rise-wrap"><span class="rise block" style="--d:120ms">Vos commandes.</span></span>
+        <span class="rise-wrap"><span class="rise block text-green-deep" style="--d:240ms">Zéro commission.</span></span>
+      </h1>
+      <p class="measure mt-7 text-lg text-muted">Créez le site de votre restaurant en 10 minutes, seul. Vos clients commandent directement chez vous, sans passer par une plateforme de livraison.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a id="hero-cta" href="/builder/" class="inline-flex min-h-12 items-center rounded-full bg-green px-7 font-medium text-navy hover:bg-[#04A859]">Créer mon site</a>
+        <a href="#economies" class="inline-flex min-h-12 items-center rounded-full px-7 font-medium text-navy ring-1 ring-navy/25 hover:bg-paper">Calculer mes économies</a>
+      </div>
+      <p class="mt-4 text-sm text-muted">14 jours pour essayer. Sans carte bancaire, sans engagement.</p>
+    </div>
+    <div class="land mx-auto w-full max-w-[19rem]" style="--d:500ms">
+      <div class="phone flex flex-col text-navy" style="--ac:#05B962;--ac-ink:#001E3E">
+        <div class="pv-hero px-5 pb-6 pt-10"><p class="text-sm opacity-70">Rabat · Agdal</p><p class="mt-1 text-3xl font-extrabold leading-none">Café Dar Nour</p></div>
+        <ul class="flex-1 divide-y divide-line px-5 text-sm">
+          {[['Msemen au miel', '12'], ['Pizza Margarita', '36'], ['Thé à la menthe', '16']].map(([n, p]) => <li class="flex justify-between py-3.5"><span class="font-medium">{n}</span><span class="text-muted">{p} MAD</span></li>)}
+        </ul>
+        <div class="space-y-2 p-4">
+          <span class="flex min-h-11 items-center justify-center rounded-full bg-green text-sm font-semibold">Commander sur WhatsApp</span>
+          <p class="text-center text-xs text-muted">★★★★★ 5,0 sur Google</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="economies" class="scroll-mt-20 px-5 pb-20">
+    <div class="mx-auto max-w-6xl rounded-[2rem] bg-navy p-7 text-white md:p-12">
+      <h2 class="text-5xl md:text-6xl">Ce que les plateformes vous prennent</h2>
+      <p class="mt-4 max-w-xl text-white/70">Réglez vos chiffres. Le montant ci-dessous reste chez vous quand le client commande en direct.</p>
+      <div class="mt-9 grid gap-10 md:grid-cols-2">
+        <div class="space-y-7" id="calc">
+          {[['orders', 'Commandes de livraison par mois', 20, 500, 120, ''], ['basket', 'Panier moyen', 40, 300, 110, ' MAD'], ['rate', 'Commission de votre plateforme', 10, 35, 25, ' %']].map(([id, l, mn, mx, v, u]) => (
+            <label class="block"><span class="flex justify-between"><span>{l}</span><output id={`o-${id}`} class="font-semibold text-green">{v}{u}</output></span>
+              <input id={id as string} type="range" min={mn} max={mx} value={v} data-u={u} class="range mt-3" /></label>
+          ))}
+        </div>
+        <div class="rounded-3xl bg-white/[.07] p-7">
+          <p class="text-white/70">Commission payée par mois</p>
+          <p class="mt-1 text-5xl font-extrabold text-green"><span id="res-m">3 300</span> MAD</p>
+          <p class="mt-6 text-white/70">Par an</p>
+          <p class="text-3xl font-bold"><span id="res-y">39 600</span> MAD</p>
+          <p class="mt-6 text-sm text-white/50">Exemple modifiable. Votre commission réelle figure dans votre contrat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="avis" class="mx-auto max-w-6xl scroll-mt-20 px-5 pb-20">
+    <h2 class="text-5xl md:text-6xl">Plus d’avis Google,<br />sans effort</h2>
+    <p class="measure mt-4 text-muted">Chaque client satisfait est une occasion. On la lui rend facile. On n’écarte jamais les clients moins contents : Google l’interdit, et vos futurs clients s’en méfient.</p>
+    <div class="mt-9 grid gap-5 md:grid-cols-3">
+      {reviews.map(([t, d]) => <div class="rounded-3xl bg-paper p-7 ring-1 ring-line"><h3 class="text-xl">{t}</h3><p class="mt-3 text-muted">{d}</p></div>)}
+    </div>
+  </section>
+
+  <section id="etapes" class="mx-auto max-w-6xl scroll-mt-20 px-5 pb-20">
+    <h2 class="text-5xl md:text-6xl">En ligne en 4 étapes</h2>
+    <ol class="mt-9 grid gap-5 md:grid-cols-4">
+      {steps.map(([t, d], i) => <li class="rounded-3xl bg-paper p-6 ring-1 ring-line"><span class="grid size-10 place-items-center rounded-full bg-green font-bold text-navy">{i + 1}</span><h3 class="mt-4 text-lg">{t}</h3><p class="mt-2 text-muted">{d}</p></li>)}
+    </ol>
+    <p class="mt-6 text-muted">Prix : <span class="ph">[PRIX À CONFIRMER]</span></p>
+  </section>
+
+  <section class="px-5 pb-24">
+    <div class="mx-auto max-w-6xl rounded-[2rem] bg-navy p-8 text-white md:p-14">
+      <h2 class="text-5xl md:text-7xl">Votre site, prêt aujourd’hui.</h2>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/builder/" class="inline-flex min-h-12 items-center rounded-full bg-green px-7 font-medium text-navy hover:bg-[#04A859]">Créer mon site</a>
+        <WaButton tone="light" text="Bonjour, je voudrais en savoir plus sur Amplify Direct." label="Écrire sur WhatsApp" where="final" />
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const f = (n: number) => Math.round(n).toLocaleString('fr-FR').replace(/\u202f/g, ' ');
+    const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+    const run = () => {
+      for (const id of ['orders', 'basket', 'rate']) $('o-' + id).textContent = `${$(id).value}${$(id).dataset.u}`;
+      const m = +$('orders').value * +$('basket').value * +$('rate').value / 100;
+      $('res-m').textContent = f(m); $('res-y').textContent = f(m * 12);
+    };
+    ['orders', 'basket', 'rate'].forEach(id => $(id).addEventListener('input', run)); run();
+  </script>
+</Base>
